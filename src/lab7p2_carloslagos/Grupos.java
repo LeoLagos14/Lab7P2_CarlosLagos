@@ -18,6 +18,9 @@ import java.util.logging.Logger;
 public class Grupos {
     
     private ArrayList<Seleccion> equipos = new ArrayList();
+    private ArrayList<Grupos> gruposs = new ArrayList();
+    private File archivo = null;
+    
 
     public Grupos() {
     }
@@ -35,6 +38,38 @@ public class Grupos {
         return "Grupos{" + "equipos=" + equipos + '}';
     }
     
+     public void escribirArchivo() throws IOException {
+        FileWriter fw = null;
+        BufferedWriter bw = null;
+        try {
+            fw = new FileWriter(archivo, false);
+            bw = new BufferedWriter(fw);
+            for (Grupos t : gruposs) {
+                bw.write(gruposs.toString());
+            }
+            bw.flush();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        bw.close();
+        fw.close();
+    }
     
+    public void cargarArchivo() {
+        Scanner sc = null;
+        gruposs = new ArrayList();
+        if (archivo.exists()) {
+            try {
+                sc = new Scanner(archivo);
+                sc.useDelimiter("|");
+                while (sc.hasNext()) {
+                    gruposs.add(new Grupos());
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            sc.close();
+        }
+    }       
     
 }//fin clase 

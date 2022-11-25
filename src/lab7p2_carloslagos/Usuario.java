@@ -6,6 +6,7 @@
 package lab7p2_carloslagos;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,7 +19,9 @@ public class Usuario {
     
     private int id;
     private String username, password, tipoUser;
-
+    private ArrayList<Usuario> usersss = new ArrayList();
+    private File archivo = null;
+    
     public Usuario() {
     }
 
@@ -63,9 +66,43 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario{" + "id=" + id + ", username=" + username + ", password=" + password + ", tipoUser=" + tipoUser + '}';
+        return id + "|" + username + "|" + password + "|" + tipoUser;
     }
     
-   
+   public void escribirArchivo() throws IOException {
+        
+      FileWriter fw = null;
+      BufferedWriter bw = null;
+        try {
+            fw = new FileWriter(archivo,false);
+            bw = new BufferedWriter(fw);
+            for (Usuario usuarios : usersss) {
+                bw.write(usuarios.toString());
+                
+            }
+            bw.flush();
+        } catch (Exception e) {
+        }
+      bw.close();
+      fw.close();
+        
+    }
+    public void cargarArchivo(){
+        Scanner sc = null;
+        usersss = new ArrayList();
+        if (archivo.exists()) {
+            try {
+                sc = new Scanner(archivo);
+                sc.useDelimiter("|");
+                while(sc.hasNext()){
+                    usersss.add(new Usuario
+                    (sc.nextInt(),sc.next(),sc.next(),sc.next()));
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            sc.close();
+        }
+    }
     
 }//fin clase
