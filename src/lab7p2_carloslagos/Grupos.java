@@ -6,7 +6,11 @@
 package lab7p2_carloslagos;
 
 import java.util.ArrayList;
-
+import java.io.*;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+/**
 /**
  *
  * @author clago
@@ -30,6 +34,7 @@ public class Grupos {
     public String toString() {
         return "Grupos{" + "equipos=" + equipos + '}';
     }
+    
     
     
 }//fin clase 

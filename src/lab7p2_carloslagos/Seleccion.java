@@ -5,8 +5,11 @@
  */
 package lab7p2_carloslagos;
 
+import java.io.*;
 import java.util.ArrayList;
-
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author clago
@@ -16,10 +19,16 @@ public class Seleccion {
     private String nombre;
     private int PJ, PG, PE, PP, GF, GC, dif;
     private ArrayList<Jugador> jugadores = new ArrayList();
+    private ArrayList<Seleccion> seleccion = new ArrayList();
+    private File archivo = null;
 
     public Seleccion() {
     }
 
+    public Seleccion(String path){
+        archivo = new File(path);
+    }
+    
     public Seleccion(String nombre, int PJ, int PG, int PE, int PP, int GF, int GC, int dif) {
         this.nombre = nombre;
         this.PJ = PJ;
@@ -102,13 +111,65 @@ public class Seleccion {
     public void setJugadores(ArrayList<Jugador> jugadores) {
         this.jugadores = jugadores;
     }
+
+    public ArrayList<Seleccion> getSeleccion() {
+        return seleccion;
+    }
+
+    public void setSeleccion(ArrayList<Seleccion> seleccion) {
+        this.seleccion = seleccion;
+    }
+
+    public File getArchivo() {
+        return archivo;
+    }
+
+    public void setArchivo(File archivo) {
+        this.archivo = archivo;
+    }
     
     
   
     @Override
     public String toString() {
-        return "Seleccion{" + "nombre=" + nombre + ", PJ=" + PJ + ", PG=" + PG + ", PE=" + PE + ", PP=" + PP + ", GF=" + GF + ", GC=" + GC + ", dif=" + dif + ", jugadores=" + jugadores + '}';
+        return nombre + "|" + PJ + "|" + PG + "|" + PE + "|" + PP + "|" + GF + "|" + GC + "|" + dif + "|" + jugadores + ',';
     }
     
+    public void escribirArchivo() throws IOException {
+        FileWriter fw = null;
+        BufferedWriter bw = null;
+        try {
+            fw = new FileWriter(archivo, false);
+            bw = new BufferedWriter(fw);
+            for (Seleccion t : seleccion) {
+                bw.write(seleccion.toString());
+            }
+            bw.flush();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        bw.close();
+        fw.close();
+    }
+    
+    public void cargarArchivo() {
+        Scanner sc = null;
+        seleccion = new ArrayList();
+        if (archivo.exists()) {
+            try {
+                sc = new Scanner(archivo);
+                sc.useDelimiter("|");
+                while (sc.hasNext()) {
+                    seleccion.add(new Seleccion(sc.next(),
+                                    sc.nextInt(),
+                                    sc.nextInt(),sc.nextInt(),sc.nextInt(),sc.nextInt(),sc.nextInt(),sc.nextInt()
+                                    ));
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            sc.close();
+        }
+    }
     
 }//fin clase

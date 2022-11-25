@@ -6,26 +6,31 @@
 package lab7p2_carloslagos;
 
 import java.util.ArrayList;
-
+import java.io.*;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+/**
 /**
  *
  * @author clago
  */
 public class Partido {
     
-    private Seleccion local,visitante;
+    private String tipoLV;
     private int goles,posesion, tirosMeta,tirosTotal, faltasCometidas;
     private ArrayList<Jugador> jugadoresFaltas = new ArrayList();
     private ArrayList<Jugador> jugadoresAmarillas = new ArrayList();
     private ArrayList<Jugador> jugadoresRojas = new ArrayList();
     private ArrayList<Jugador> jugadoresGol = new ArrayList();
+    private ArrayList<Partido> partido = new ArrayList();
+    private File archivo = null;
 
     public Partido() {
     }
 
-    public Partido(Seleccion local, Seleccion visitante, int goles, int posesion, int tirosMeta, int tirosTotal, int faltasCometidas) {
-        this.local = local;
-        this.visitante = visitante;
+    public Partido(String tipoLV, int goles, int posesion, int tirosMeta, int tirosTotal, int faltasCometidas) {
+        this.tipoLV= tipoLV;
         this.goles = goles;
         this.posesion = posesion;
         this.tirosMeta = tirosMeta;
@@ -33,22 +38,31 @@ public class Partido {
         this.faltasCometidas = faltasCometidas;
     }
 
-    public Seleccion getLocal() {
-        return local;
+    public String getTipoLV() {
+        return tipoLV;
     }
 
-    public void setLocal(Seleccion local) {
-        this.local = local;
+    public void setTipoLV(String tipoLV) {
+        this.tipoLV = tipoLV;
     }
 
-    public Seleccion getVisitante() {
-        return visitante;
+    public ArrayList<Partido> getPartido() {
+        return partido;
     }
 
-    public void setVisitante(Seleccion visitante) {
-        this.visitante = visitante;
+    public void setPartido(ArrayList<Partido> partido) {
+        this.partido = partido;
     }
 
+    public File getArchivo() {
+        return archivo;
+    }
+
+    public void setArchivo(File archivo) {
+        this.archivo = archivo;
+    }
+
+    
     public int getGoles() {
         return goles;
     }
@@ -123,8 +137,43 @@ public class Partido {
 
     @Override
     public String toString() {
-        return "Partido{" + "local=" + local + ", visitante=" + visitante + ", goles=" + goles + ", posesion=" + posesion + ", tirosMeta=" + tirosMeta + ", tirosTotal=" + tirosTotal + ", faltasCometidas=" + faltasCometidas + ", jugadoresFaltas=" + jugadoresFaltas + ", jugadoresAmarillas=" + jugadoresAmarillas + ", jugadoresRojas=" + jugadoresRojas + ", jugadoresGol=" + jugadoresGol + '}';
+        return   tipoLV + "|" + goles + "|" + posesion + "|" + tirosMeta + "|" + tirosTotal + "|" + faltasCometidas + "|" + jugadoresFaltas + "|" + jugadoresAmarillas + "|" + jugadoresRojas + "|" + jugadoresGol;
     }
     
+    public void escribirArchivo() throws IOException {
+        FileWriter fw = null;
+        BufferedWriter bw = null;
+        try {
+            fw = new FileWriter(archivo, false);
+            bw = new BufferedWriter(fw);
+            for (Partido t : partido) {
+                bw.write(partido.toString());
+            }
+            bw.flush();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        bw.close();
+        fw.close();
+    }
+    
+    public void cargarArchivo() {
+        Scanner sc = null;
+        partido = new ArrayList();
+        if (archivo.exists()) {
+            try {
+                sc = new Scanner(archivo);
+                sc.useDelimiter("|");
+                while (sc.hasNext()) {
+                    partido.add(new Partido(sc.next(),
+                                    sc.nextInt(),
+                                    sc.nextInt(),sc.nextInt(),sc.nextInt(),sc.nextInt()));
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            sc.close();
+        }
+    }       
     
 }//fin clase

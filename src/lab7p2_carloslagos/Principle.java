@@ -17,8 +17,8 @@ public class Principle extends javax.swing.JFrame {
     public Principle() {
         initComponents();
         this.setLocationRelativeTo(null);
-        jFrame1.setLocationRelativeTo(null);
-        jFrame2.setLocationRelativeTo(null);
+        jFrame1.setLocation(500, 100);
+        jFrame2.setLocation(500, 100);
     }
 
     /**
@@ -30,6 +30,7 @@ public class Principle extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jFrame2 = new javax.swing.JFrame();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel_IngresarSele = new javax.swing.JPanel();
@@ -66,6 +67,13 @@ public class Principle extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jFormattedTextField9 = new javax.swing.JFormattedTextField();
         jFormattedTextField10 = new javax.swing.JFormattedTextField();
+        jPanel9 = new javax.swing.JPanel();
+        jLabel18 = new javax.swing.JLabel();
+        jComboBoxUsuarios = new javax.swing.JComboBox<>();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jLabel19 = new javax.swing.JLabel();
+        jBGuardarCam = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jFrame1 = new javax.swing.JFrame();
         jTabbedPane1 = new javax.swing.JTabbedPane();
@@ -348,6 +356,62 @@ public class Principle extends javax.swing.JFrame {
         );
 
         jTabbedPane2.addTab("Partidos", jPanel_Partido);
+
+        jLabel18.setText("Usuarios:");
+
+        jComboBoxUsuarios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        buttonGroup1.add(jRadioButton1);
+        jRadioButton1.setText("Espectador");
+
+        buttonGroup1.add(jRadioButton2);
+        jRadioButton2.setText("Administrador");
+
+        jLabel19.setText("Tipo:");
+
+        jBGuardarCam.setText("Guardar Cambios");
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(196, 196, 196)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(47, 47, 47)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jComboBoxUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(290, 290, 290)
+                        .addComponent(jBGuardarCam, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(292, Short.MAX_VALUE))
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(73, 73, 73)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioButton1)
+                    .addComponent(jRadioButton2)
+                    .addComponent(jLabel19))
+                .addGap(101, 101, 101)
+                .addComponent(jBGuardarCam)
+                .addContainerGap(129, Short.MAX_VALUE))
+        );
+
+        jTabbedPane2.addTab("Administrador de Usuarios", jPanel9);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("Vista Administrador");
@@ -761,12 +825,15 @@ public class Principle extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Goleadores;
     private javax.swing.JTable Jugadores;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton jBGuardarCam;
     private javax.swing.JButton jB_AgregarSele;
     private javax.swing.JButton jButton_AgregarJug;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBoxPartidoSele;
     private javax.swing.JComboBox<String> jComboBoxPartidoSeleLoc;
+    private javax.swing.JComboBox<String> jComboBoxUsuarios;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JFormattedTextField jFormattedTextField10;
     private javax.swing.JFormattedTextField jFormattedTextField2;
@@ -788,6 +855,8 @@ public class Principle extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -804,10 +873,13 @@ public class Principle extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JPanel jPanel_IngresarJug;
     private javax.swing.JPanel jPanel_IngresarSele;
     private javax.swing.JPanel jPanel_Partido;
     private javax.swing.JPasswordField jPassword;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -830,4 +902,6 @@ public class Principle extends javax.swing.JFrame {
     private javax.swing.JTextField jtf_seleccion;
     private javax.swing.JTextField jtf_user;
     // End of variables declaration//GEN-END:variables
+
+
 }
