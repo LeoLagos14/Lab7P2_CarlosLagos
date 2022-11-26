@@ -7,6 +7,7 @@ package lab7p2_carloslagos;
 
 import java.io.File;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,6 +25,7 @@ public class Principle extends javax.swing.JFrame {
         jFrame2.setLocation(500, 100);
         
         usersss.add(new Usuario(id, "ElMeroToro", "1420", "Administrador"));
+        
         
         
     }
@@ -124,6 +126,11 @@ public class Principle extends javax.swing.JFrame {
         jLabel1.setText("Nombre de la Seleccion");
 
         jB_AgregarSele.setText("Agregar Seleccion");
+        jB_AgregarSele.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jB_AgregarSeleMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel_IngresarSeleLayout = new javax.swing.GroupLayout(jPanel_IngresarSele);
         jPanel_IngresarSele.setLayout(jPanel_IngresarSeleLayout);
@@ -883,6 +890,22 @@ public class Principle extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jb_loginActionPerformed
 
+    private void jB_AgregarSeleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB_AgregarSeleMouseClicked
+        // TODO add your handling code here:
+        File archivoseles = null;
+        archivoseles = new File("./Lista Selecciones.txt");
+        s.setArchivo(archivoseles);
+        
+        selecciones.add(new Seleccion(jtf_seleccion.getText()));
+        JOptionPane.showMessageDialog(this, "Se agregó su selección!");
+        
+        try {
+            s.escribirArchivo();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_jB_AgregarSeleMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1006,4 +1029,5 @@ static ArrayList<Usuario> usersss = new ArrayList();
 static ArrayList<Grupos> gruposs = new ArrayList();
 static int id = 0;
 static Usuario u = new Usuario();
+static Seleccion s = new Seleccion();
 }

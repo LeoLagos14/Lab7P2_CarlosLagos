@@ -107,6 +107,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Agregar Seleccion"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jB_AgregarSeleMouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
