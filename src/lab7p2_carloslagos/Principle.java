@@ -5,6 +5,9 @@
  */
 package lab7p2_carloslagos;
 
+import java.io.File;
+import java.util.ArrayList;
+
 /**
  *
  * @author clago
@@ -19,6 +22,10 @@ public class Principle extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         jFrame1.setLocation(500, 100);
         jFrame2.setLocation(500, 100);
+        
+        usersss.add(new Usuario(id, "ElMeroToro", "1420", "Administrador"));
+        
+        
     }
 
     /**
@@ -161,14 +168,10 @@ public class Principle extends javax.swing.JFrame {
 
         jLabel5.setText("Posicion:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jButton_AgregarJug.setText("Agregar Jugador");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Elija Seleccion:");
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel_IngresarJugLayout = new javax.swing.GroupLayout(jPanel_IngresarJug);
         jPanel_IngresarJug.setLayout(jPanel_IngresarJugLayout);
@@ -202,7 +205,7 @@ public class Principle extends javax.swing.JFrame {
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jtf_nombrejug, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -239,9 +242,11 @@ public class Principle extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel15.setText("Tiros a Meta");
 
-        jComboBoxPartidoSeleLoc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBoxPartidoSele.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxPartidoSele.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxPartidoSeleActionPerformed(evt);
+            }
+        });
 
         jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 
@@ -352,14 +357,14 @@ public class Principle extends javax.swing.JFrame {
                     .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jFormattedTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jFormattedTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addContainerGap(90, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Partidos", jPanel_Partido);
 
         jLabel18.setText("Usuarios:");
 
-        jComboBoxUsuarios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxUsuarios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
 
         buttonGroup1.add(jRadioButton1);
         jRadioButton1.setText("Espectador");
@@ -735,6 +740,16 @@ public class Principle extends javax.swing.JFrame {
         jLabel9.setText("Contraseña:");
 
         jb_login.setText("DALE!");
+        jb_login.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_loginMouseClicked(evt);
+            }
+        });
+        jb_login.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_loginActionPerformed(evt);
+            }
+        });
 
         jPassword.setText("jPasswordField1");
 
@@ -786,6 +801,87 @@ public class Principle extends javax.swing.JFrame {
     private void jtf_nombrejugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_nombrejugActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtf_nombrejugActionPerformed
+
+    private void jComboBoxPartidoSeleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxPartidoSeleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxPartidoSeleActionPerformed
+
+    private void jb_loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_loginMouseClicked
+        // TODO add your handling code here:
+       u.setUsersss(usersss);
+        File arch = null;
+        arch = new File("./Lista Usuarios.txt");
+        u.setArchivo(arch);
+        
+        
+        for (int i = 0; i < usersss.size(); i++) {
+            if (jtf_user.getText().equals(usersss.get(i).getUsername())&& jPassword.getText().equals(usersss.get(i).getPassword())) {
+                if (usersss.get(i).getTipoUser().equals("Administrador")) {
+                    jFrame2.pack();
+                    
+                    jFrame2.setLocationRelativeTo(this);
+                    jFrame2.setVisible(true);
+                    this.setVisible(false);
+                }
+                else{
+                    jFrame1.pack();
+                    jFrame1.setLocationRelativeTo(this);
+                    jFrame1.setVisible(true);
+                    this.setVisible(false);
+                    
+                }    
+        } 
+            else{
+                usersss.add(new Usuario(id + 1000 + usersss.size()+1, jtf_user.getText(),jPassword.getText(),"Espectador"));
+                jFrame1.pack();
+                jFrame1.setLocationRelativeTo(this);
+                jFrame1.setVisible(true);
+                this.setVisible(false);
+                  
+                  
+          
+            }
+        }
+        try {
+            u.escribirArchivo();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        
+    }//GEN-LAST:event_jb_loginMouseClicked
+
+    private void jb_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_loginActionPerformed
+        // TODO add your handling code here:
+        for (int i = 0; i < usersss.size(); i++) {
+            if (jtf_user.getText().equals(usersss.get(i).getUsername())&& jPassword.getText().equals(usersss.get(i).getPassword())) {
+                if (usersss.get(i).getTipoUser().equals("Administrador")) {
+                    jFrame2.pack();
+                    
+                    jFrame2.setLocationRelativeTo(this);
+                    jFrame2.setVisible(true);
+                    this.setVisible(false);
+                }
+                else{
+                    jFrame1.pack();
+                    jFrame1.setLocationRelativeTo(this);
+                    jFrame1.setVisible(true);
+                    this.setVisible(false);
+                    
+                }    
+        } 
+            else{
+                usersss.add(new Usuario(id + 1000 + usersss.size()+1, jtf_user.getText(),jPassword.getText(),"Espectador"));
+                jFrame1.pack();
+                jFrame1.setLocationRelativeTo(this);
+                jFrame1.setVisible(true);
+                this.setVisible(false);
+                  
+                  
+          
+            }
+        }
+        
+    }//GEN-LAST:event_jb_loginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -903,5 +999,11 @@ public class Principle extends javax.swing.JFrame {
     private javax.swing.JTextField jtf_user;
     // End of variables declaration//GEN-END:variables
 
-
+static ArrayList<Seleccion> selecciones = new ArrayList();
+static ArrayList<Jugador> jugadores = new ArrayList();
+static ArrayList<Partido> partidos = new ArrayList();
+static ArrayList<Usuario> usersss = new ArrayList();
+static ArrayList<Grupos> gruposs = new ArrayList();
+static int id = 0;
+static Usuario u = new Usuario();
 }

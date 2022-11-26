@@ -64,6 +64,23 @@ public class Usuario {
         this.tipoUser = tipoUser;
     }
 
+    public ArrayList<Usuario> getUsersss() {
+        return usersss;
+    }
+
+    public void setUsersss(ArrayList<Usuario> usersss) {
+        this.usersss = usersss;
+    }
+
+    public File getArchivo() {
+        return archivo;
+    }
+
+    public void setArchivo(File archivo) {
+        this.archivo = archivo;
+    }
+    
+
     @Override
     public String toString() {
         return id + "|" + username + "|" + password + "|" + tipoUser;

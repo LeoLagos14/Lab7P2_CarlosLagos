@@ -33,9 +33,26 @@ public class Grupos {
         this.equipos = equipos;
     }
 
+    public ArrayList<Grupos> getGruposs() {
+        return gruposs;
+    }
+
+    public void setGruposs(ArrayList<Grupos> gruposs) {
+        this.gruposs = gruposs;
+    }
+
+    public File getArchivo() {
+        return archivo;
+    }
+
+    public void setArchivo(File archivo) {
+        this.archivo = archivo;
+    }
+    
+
     @Override
     public String toString() {
-        return "Grupos{" + "equipos=" + equipos + '}';
+        return equipos + "|";
     }
     
      public void escribirArchivo() throws IOException {
